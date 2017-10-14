@@ -3,30 +3,53 @@ import { Platform, StyleSheet, Text, View } from "react-native";
 
 import MapView from "react-native-maps";
 
-export default class App extends Component<{}> {
+class App extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      region: {
+        latitude: 37.9055,
+        longitude: -122.067,
+        latitudeDelta: 0.0922,
+        longitudeDelta: 0.0421,
+        error: null
+      },
+      markers: [
+        {
+          title: "Walnut Creek",
+          description: "Walnut Creek Description",
+          coordinates: {
+            latitude: 37.9055,
+            longitude: -122.0676
+          }
+        },
+        {
+          title: "Pleasant Hill",
+          description: "Pleasant Hill Description",
+          coordinates: {
+            latitude: 37.9285,
+            longitude: -122.056
+          }
+        }
+      ]
+    };
+  }
+
   render() {
     return (
       <View style={styles.container}>
-        <MapView
-          style={styles.map}
-          initialRegion={{
-            latitude: 37.78825,
-            longitude: -122.4324,
-            latitudeDelta: 0.0922,
-            longitudeDelta: 0.0421
-          }}
-        >
-          <MapView.Marker
-            coordinate={{
-              latitude: 37.78825,
-              longitude: -122.4324
-            }}
-          >
-            <View style={styles.radius}>
-              <View style={styles.marker} />
-            </View>
-          </MapView.Marker>
+        <MapView style={styles.map} region={this.state.region}>
+          {this.state.markers.map(marker => (
+            <MapView.Marker
+              coordinate={marker.coordinates}
+              title={marker.title}
+              description={marker.description}
+            />
+          ))}
         </MapView>
+
+        {this.state.error ? <Text>Error: {this.state.error}</Text> : null}
       </View>
     );
   }
@@ -76,3 +99,5 @@ const styles = StyleSheet.create({
     marginBottom: 5
   }
 });
+
+export default App;
