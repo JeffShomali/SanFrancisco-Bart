@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Text, View } from "react-native";
 import { Container, Content } from "native-base";
-import { Router, Scene } from "react-native-router-flux";
 
 import AppHeader from "./AppHeader";
 import AppFooter from "./AppFooter";
@@ -16,11 +15,7 @@ export default class App extends Component {
       <Container>
         <AppHeader />
 
-        <Router>
-          <Scene key="root">
-            <Scene key="station" component={Stations} title="Station" />
-          </Scene>
-        </Router>
+        <Maps />
 
         <AppFooter />
       </Container>
