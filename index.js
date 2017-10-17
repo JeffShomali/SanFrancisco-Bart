@@ -1,4 +1,4 @@
 import { AppRegistry } from "react-native";
-import CurrentLocation from "./src/components/CurrentLocation";
+import App from "./src/components/App";
 
-AppRegistry.registerComponent("SfBart", () => CurrentLocation);
+AppRegistry.registerComponent("SfBart", () => App);
