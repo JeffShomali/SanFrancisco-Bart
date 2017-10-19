@@ -45,14 +45,6 @@ export default class Maps extends Component {
       longitude: 0
     },
 
-    region: {
-      latitude: 37.9055,
-      longitude: -122.067,
-      latitudeDelta: 0.0922,
-      longitudeDelta: 0.0421,
-      error: null
-    },
-    
     markers: null
   };
 
@@ -78,7 +70,6 @@ export default class Maps extends Component {
         };
 
         this.setState({ initialPosition: initialRegion });
-        this.setState({ markerPosition: initialRegion });
       },
       error => alert(JSON.stringify(error)),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 }
@@ -96,7 +87,6 @@ export default class Maps extends Component {
       };
 
       this.setState({ initialPosition: lastRegion });
-      this.setState({ markerPosition: lastRegion });
     });
   }
 
@@ -114,12 +104,18 @@ export default class Maps extends Component {
             style={styles.map}
             region={this.state.initialPosition}
             showsUserLocation={true}
+            followsUserLocation={true}
+            zoomEnabled={true}
+            minZoomLevel={0}
+            maxZoomLevel={20}
+            scrollEnabled={true}
+            loadingEnabled={true}
           >
             {this.state.markers.map(marker => (
               <MapView.Marker
                 coordinate={marker.coordinates}
                 title={marker.name}
-                description={`${marker.address},${marker.city}, ${marker.zipcode}`}
+                description={`${marker.address}, ${marker.city}, ${marker.zipcode}`}
               />
             ))}
           </MapView>
