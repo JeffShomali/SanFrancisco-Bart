@@ -1,8 +1,40 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
+import {
+  Button,
+  Text,
+  Container,
+  Card,
+  CardItem,
+  Body,
+  Content,
+  Header,
+  Left,
+  Right,
+  Icon,
+  Title,
+  Input,
+  InputGroup,
+  Item,
+  Tab,
+  Tabs,
+  Footer,
+  FooterTab,
+  Label
+} from "native-base";
 
 export default class Stations extends Component {
   render() {
-    return <Text> Stations .... </Text>;
+    const { navigate } = this.props.navigation;
+    return (
+      <Container style={{ backgroundColor: "yellow" }}>
+        <Content padder>
+          <Item floatingLabel>
+            <Label style={{ fontSize: 30 }}>Station contents goes here</Label>
+            <Input />
+          </Item>
+        </Content>
+      </Container>
+    );
   }
 }

@@ -1,8 +1,39 @@
 import React, { Component } from "react";
-import { Text, View } from "react-native";
+import { View } from "react-native";
+import {
+  Button,
+  Text,
+  Container,
+  Card,
+  CardItem,
+  Body,
+  Content,
+  Header,
+  Left,
+  Right,
+  Icon,
+  Title,
+  Input,
+  InputGroup,
+  Item,
+  Tab,
+  Tabs,
+  Footer,
+  FooterTab,
+  Label
+} from "native-base";
 
 export default class Favorites extends Component {
   render() {
-    return <Text> Favorites </Text>;
+    const { navigate } = this.props.navigation;
+    return (
+      <Container style={{ backgroundColor: "darkgreen" }}>
+        <Content padder>
+          <Text style={{ fontSize: 30, color: "white" }}>
+            This is Favorites
+          </Text>
+        </Content>
+      </Container>
+    );
   }
 }
