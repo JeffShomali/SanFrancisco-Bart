@@ -18,6 +18,8 @@ import {
   Spinner
 } from "native-base";
 
+import stationsMarkers from "../../data.json";
+
 import MapView from "react-native-maps";
 
 const { width, height } = Dimensions.get("window");
@@ -50,137 +52,8 @@ export default class Maps extends Component {
       longitudeDelta: 0.0421,
       error: null
     },
-
-    markers: [
-      {
-        title: "North Concord/Martinez",
-        description: "North Concord/Martinez Station Description",
-        coordinates: {
-          latitude: 38.006558,
-          longitude: -122.025514
-        }
-      },
-      {
-        title: "Concord",
-        description: "Concord Station Description",
-        coordinates: {
-          latitude: 37.977607,
-          longitude: -122.028776
-        }
-      },
-      {
-        title: "Pleasant Hill",
-        description: "Pleasant Hill/Contra Costa Centre Station Description",
-        coordinates: {
-          latitude: 37.929551,
-          longitude: -122.056054
-        }
-      },
-      {
-        title: "Walnut Creek",
-        description: "Walnut Creek Station Description",
-        coordinates: {
-          latitude: 37.909715,
-          longitude: -122.066653
-        }
-      },
-      {
-        title: "Lafayette",
-        description: "Lafayette Station Description",
-        coordinates: {
-          latitude: 37.897428,
-          longitude: -122.124139
-        }
-      },
-      {
-        title: "Orinda",
-        description: "Orinda Station Description",
-        coordinates: {
-          latitude: 37.87858,
-          longitude: -122.183799
-        }
-      },
-      {
-        title: "Rockridge",
-        description: "Rockridge Station Description",
-        coordinates: {
-          latitude: 37.844923,
-          longitude: -122.251381
-        }
-      },
-      {
-        title: "MacArthur",
-        description: "MacArthur Station Description",
-        coordinates: {
-          latitude: 37.829525,
-          longitude: -122.26625
-        }
-      },
-      {
-        title: "19th St",
-        description: "19th St / Oakland Station Description",
-        coordinates: {
-          latitude: 37.809071,
-          longitude: -122.268305
-        }
-      },
-      {
-        title: "12th St",
-        description: "12th St / Oakland Station Description",
-        coordinates: {
-          latitude: 37.803866,
-          longitude: -122.271604
-        }
-      },
-      {
-        title: "Embarcadero",
-        description: "Embarcadero Station Description",
-        coordinates: {
-          latitude: 37.792884,
-          longitude: -122.397035
-        }
-      },
-      {
-        title: "Montgomery",
-        description: "Montgomery Station Description",
-        coordinates: {
-          latitude: 37.78934,
-          longitude: -122.401123
-        }
-      },
-      {
-        title: "Powell St.",
-        description: "Powell St. Station Description",
-        coordinates: {
-          latitude: 37.784715,
-          longitude: -122.408019
-        }
-      },
-      {
-        title: "Civic Center/UN Plaza",
-        description: "Civic Center/UN Plaza Station Description",
-        coordinates: {
-          latitude: 37.779803,
-          longitude: -122.414497
-        }
-      },
-      {
-        title: "Daly City",
-        description: "Daly City Station Description",
-        coordinates: {
-          latitude: 337.70633,
-          longitude: -122.46901
-        }
-      },
-      {
-        title: "San Francisco Int'l Airport Station",
-        description: "San Francisco Int'l Airport Station Description",
-        coordinates: {
-          latitude: 37.616218,
-          longitude: -122.392233
-        }
-      }
-    ]
+    
+    markers: null
   };
 
   watchID: ?number = null;
@@ -189,6 +62,9 @@ export default class Maps extends Component {
     InteractionManager.runAfterInteractions(() => {
       this.setState({ loading: false });
     });
+
+    this.setState({ markers: stationsMarkers });
+
     navigator.geolocation.getCurrentPosition(
       position => {
         var lat = parseFloat(position.coords.latitude);
@@ -242,8 +118,8 @@ export default class Maps extends Component {
             {this.state.markers.map(marker => (
               <MapView.Marker
                 coordinate={marker.coordinates}
-                title={marker.title}
-                description={marker.description}
+                title={marker.name}
+                description={`${marker.address},${marker.city}, ${marker.zipcode}`}
               />
             ))}
           </MapView>

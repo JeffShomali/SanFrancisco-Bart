@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { View } from "react-native";
+import { View, ScrollView, Image } from "react-native";
 import {
   Button,
   Text,
@@ -27,12 +27,9 @@ export default class Stations extends Component {
   render() {
     const { navigate } = this.props.navigation;
     return (
-      <Container style={{ backgroundColor: "yellow" }}>
+      <Container>
         <Content padder>
-          <Item floatingLabel>
-            <Label style={{ fontSize: 30 }}>Station contents goes here</Label>
-            <Input />
-          </Item>
+          <Image source={require("../../images/stations.jpg")} />
         </Content>
       </Container>
     );
