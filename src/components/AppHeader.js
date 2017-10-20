@@ -8,7 +8,10 @@ class AppHeader extends Component {
     return (
       <Header>
         <Left>
-          <Button transparent>
+          <Button
+            transparent
+            onPress={() => props.navigation.navigate("Favorites")}
+          >
             <Icon name="map" />
           </Button>
         </Left>

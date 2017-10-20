@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 
+import AppHeader from "../AppHeader";
+import RoutesMap from "./RoutesMap";
 import Maps from "./Maps";
 import Stations from "./Stations";
 import Favorites from "./Favorites";
 import More from "./More";
-import AppHeader from "../AppHeader";
 
 import { TabNavigator } from "react-navigation";
 import {
@@ -22,7 +23,8 @@ export default (MainScreenNavigator = TabNavigator(
     Maps: { screen: Maps },
     Stations: { screen: Stations },
     Favorites: { screen: Favorites },
-    More: { screen: More }
+    More: { screen: More },
+    RoutesMap: { screen: RoutesMap }
   },
   {
     tabBarPosition: "bottom",

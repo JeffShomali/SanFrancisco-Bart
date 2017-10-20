@@ -1,35 +1,58 @@
 import React, { Component } from "react";
-import { View, ScrollView, Image } from "react-native";
 import {
-  Button,
-  Text,
   Container,
-  Card,
-  CardItem,
-  Body,
-  Content,
   Header,
+  Content,
+  List,
+  ListItem,
   Left,
+  Body,
   Right,
-  Icon,
-  Title,
-  Input,
-  InputGroup,
-  Item,
-  Tab,
-  Tabs,
-  Footer,
-  FooterTab,
-  Label
+  Thumbnail,
+  Text,
+  Icon
 } from "native-base";
 
+import { ListView } from "react-native";
+
+import locations from "../../data.json";
+import bartImage from "../../images/bart.jpg";
+
 export default class Stations extends Component {
+  state: {
+    locations: null
+  };
+
+  componentWillMount() {
+    this.setState({ locations: locations });
+  }
+
   render() {
-    const { navigate } = this.props.navigation;
     return (
       <Container>
-        <Content padder>
-          <Image source={require("../../images/stations.jpg")} />
+        <Content enableResetScrollToCoords>
+          {this.state.locations.map(location => (
+            <List>
+              <ListItem avatar>
+                <Left>
+                  <Thumbnail source={require("../../images/bart.jpg")} />
+                </Left>
+                <Body>
+                  <Text>{location.name}</Text>
+                  <Text note>
+                    {`${location.address}, ${location.city}, ${location.zipcode}`}
+                  </Text>
+                </Body>
+                <Right>
+                  <Icon
+                    ios="ios-arrow-forward"
+                    android="md-menu"
+                    style={{ fontSize: 25, color: "gray" }}
+                  />
+                </Right>
+              </ListItem>
+            </List>
+          ))}
         </Content>
       </Container>
     );
